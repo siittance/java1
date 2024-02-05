@@ -1,68 +1,42 @@
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 
-public class Main {
-    public static void main(String[] args) throws FileNotFoundException {
-        PrintWriter pw = new PrintWriter("recept.txt");
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Дисклеймер:\n" +
-                "В данном задании был написан лично мой рецепт приготовления, он может отличаться от настоящего\n" +
-                "КАРБОНАРА: ");
-        pw.println("Дисклеймер:\n" +
-                "В данном задании был написан лично мой рецепт приготовления, он может отличаться от настоящего\n" +
-                "КАРБОНАРА: ");
-        System.out.print("Для начала вам нужно нарезать курицу\n" +
-                "Введите кол-во нарезанных грудок: ");
-        pw.println("Для начала вам нужно нарезать курицу\n" +
-                "Введите кол-во нарезанных грудок: ");
-        int gram = sc.nextInt();
-        pw.println(gram);
-        System.out.print("Жарим курицу до состояния хрустящей корочки\n" +
-                "Далее заливаем курицу сливками\n" +
-                "Введите кол-во литров сливок, которое вы вылили: ");
-        pw.println("Жарим курицу до состояния хрустящей корочки\n" +
-                "Далее заливаем курицу сливками\n" +
-                "Введите кол-во литров сливок, которое вы вылили: ");
-        int litr = sc.nextInt();
-        pw.println(litr);
-        System.out.print("Пока сливки греются, натираем сыр\n" +
-                "Введите кол-во упаковок сыра, которые вы натёрли: ");
-        pw.println("Пока сливки греются, натираем сыр\n" +
-                "Введите кол-во упаковок сыра, которые вы натёрли: ");
-        int ypak = sc.nextInt();
-        pw.println(ypak);
-        System.out.print("Далее добавляем натёртый сыр к нашему соусу и начинаем варить макароны\n" +
-                "Введите кол-во литров воды, которое вы налили в кастрюлю для макарон: ");
-        pw.println("Далее добавляем натёртый сыр к нашему соусу и начинаем варить макароны\n" +
-                "Введите кол-во литров воды, которое вы налили в кастрюлю для макарон: ");
-        int litrvoda = sc.nextInt();
-        pw.println(litrvoda);
-        System.out.print("Чтобы вода кипела быстрее, нужно добавить соль.\n" +
-                "Введите кол-во щепоток соли: ");
-        pw.println("Чтобы вода кипела быстрее, нужно добавить соль.\n" +
-                "Введите кол-во щепоток соли: ");
-        int soli = sc.nextInt();
-        pw.println(soli);
-        System.out.print("Вода закипела. Если весь сыр расплавился, выключаем соус, чтобы он загустел\n" +
-                "Далее добавляем макароны.\nВведите кол-во пачек добавленных макарон: ");
-        pw.println("Вода закипела. Если весь сыр расплавился, выключаем соус, чтобы он загустел\n" +
-                "Далее добавляем макароны.\nВведите кол-во пачек добавленных макарон: ");
-        int pachki = sc.nextInt();
-        pw.println(pachki);
-        System.out.print("После того, как макароны приготовились, нужно вылить, почти всю воду из кастрюли и добавить соль + сливочное масло\n" +
-                "Введите кол-во щепоток соли: ");
-        pw.println("После того, как макароны приготовились, нужно вылить, почти всю воду из кастрюли и добавить соль + сливочное масло\n" +
-                "Введите кол-во щепоток соли: ");
-        int soli2 = sc.nextInt();
-        pw.println(soli2);
-        System.out.print("Введите кол-во кусочков масла: ");
-        pw.println("Введите кол-во кусочков масла: ");
-        int maslo = sc.nextInt();
-        pw.println(maslo);
-        System.out.print("Смешайте макароны и соус.\nВаше блюдо готово!\nПриятного аппетита <3");
-        pw.println("Смешайте макароны и соус.\nВаше блюдо готово!\nПриятного аппетита <3");
-        pw.println();
-        pw.close();
+public class test {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Введите количество спагетти в граммах:");
+        int spaghettiGrams = scanner.nextInt();
+        System.out.println("Введите количество томатного соуса в граммах:");
+        int sauceGrams = scanner.nextInt();
+        System.out.println("Введите количество мясного фарша в граммах:");
+        int meatGrams = scanner.nextInt();
+        System.out.println("Введите количество лука в граммах:");
+        int onionGrams = scanner.nextInt();
+        System.out.println("Введите количество чеснока в граммах:");
+        int garlicGrams = scanner.nextInt();
+
+        String recipe = createRecipe(spaghettiGrams, sauceGrams, meatGrams, onionGrams, garlicGrams);
+        System.out.println(recipe);
+
+        writeToFile(recipe);
+    }
+
+    private static String createRecipe(int spaghettiGrams, int sauceGrams, int meatGrams, int onionGrams, int garlicGrams) {
+        return "Рецепт спагетти с томатным соусом:\n" +
+                "1) Вскипятите воду и добавьте " + spaghettiGrams + " грамм спагетти, варите до готовности.\n" +
+                "2) На сковороде обжарьте " + meatGrams + " грамм мясного фарша до готовности.\n" +
+                "3) Добавьте " + onionGrams + " грамм нарезанного лука и " + garlicGrams + " грамм чеснока, жарьте до золотистого цвета.\n" +
+                "4) Влейте " + sauceGrams + " грамм томатного соуса и тушите на медленном огне 10 минут.\n" +
+                "5) Смешайте соус с готовыми спагетти и подавайте к столу.";
+    }
+    private static void writeToFile(String text) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("recipe.txt"))) {
+            writer.write(text);
+        } catch (IOException e) {
+            System.out.println("Произошла ошибка при записи файла: " + e.getMessage());
+        }
     }
 }
